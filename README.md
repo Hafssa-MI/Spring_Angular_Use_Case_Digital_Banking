@@ -19,6 +19,7 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Création des repositories CustomerRepository, BankAccountRepository, AccountOperationRepository.
 - [x] Ajout de l'annotation @Enumerated pour voir les enumerations en String dans le tableau
 - [x] Tester la création des tableaux en créeons dans le @Bean CommandLineRunner.
+- [x] Utilistion de mysql au lieu de h2 database
 
 
 ---
