@@ -14,6 +14,12 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Effectuation d'héritage avec SingleTable méthode et les Annotations @Ineritance, @DiscriminatorColumn, @DiscriminatorValue
 
 
+###  Phase 2: Repositories
+-  **Commit:** Création des Repository.
+- [x] Création des repositories CustomerRepository, BankAccountRepository, AccountOperationRepository.
+- [x] Ajout de l'annotation @Enumerated pour voir les enumerations en String dans le tableau
+- [x] Tester la création des tableaux en créeons dans le @Bean CommandLineRunner.
+
 
 ---
 
