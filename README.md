@@ -8,9 +8,10 @@ This project is a robust backend system for a Digital Banking application built 
 ##  Progrès de developpement 
 
 ###  Phase 1: Entités
--  **Initial Commit:** Création des entités et setup JPA pour le MOR.
+-  **Commit:** Création des entités et setup JPA pour le MOR.
 - [x] Création des entités Customer, BankAccount, AccountOperation, CurrentAccount, SavingAccount.
-- [x] Ajout des Anotations JPA; @Entity, @ID, @OneToMany, @ManyToOne ... 
+- [x] Ajout des Anotations JPA; @Entity, @ID, @OneToMany, @ManyToOne 
+- [x] Effectuation d'héritage avec SingleTable méthode et les Annotations @Ineritance, @DiscriminatorColumn, @DiscriminatorValue
 
 
 
