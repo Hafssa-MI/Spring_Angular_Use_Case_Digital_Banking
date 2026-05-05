@@ -27,7 +27,7 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Création des services interfaces et leurs implémentation : BankAccountService, BankAccountServiceImpl
 - [x] Ajout de l'annotation @Service et @Transactional de springframework
 - [x] Injection des dépendances avec un constructeur @AllArgsConstructor de lombok, Ajout de la journalisation @Slf4j de lombok
-- [x] Respect des règles metiers en ajoutant les Exceptions dans le package Exceptions : CustomerNotFoundException(surveillé), 
+- [x] Respect des règles metiers en ajoutant les Exceptions dans le package Exceptions : CustomerNotFoundException(surveillé) ...
 
 
 ---
