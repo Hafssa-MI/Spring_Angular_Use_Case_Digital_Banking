@@ -1,5 +1,6 @@
 package net.hafssa.ebankbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class Customer {
     private String email;
     // Un client peut avoir plusieurs comptes => une Liste de comptes doit etre crée
     @OneToMany(mappedBy = "customer")
+    // @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<BankAccount> bankAccounts;
 
 }

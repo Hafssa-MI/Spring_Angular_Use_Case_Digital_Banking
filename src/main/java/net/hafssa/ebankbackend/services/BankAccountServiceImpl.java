@@ -2,11 +2,13 @@ package net.hafssa.ebankbackend.services;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.hafssa.ebankbackend.dtos.CustomerDTO;
 import net.hafssa.ebankbackend.entities.*;
 import net.hafssa.ebankbackend.enums.OperationType;
 import net.hafssa.ebankbackend.exceptions.BalanceNotSufficientException;
 import net.hafssa.ebankbackend.exceptions.BankAccountNotFoundException;
 import net.hafssa.ebankbackend.exceptions.CustomerNotFoundException;
+import net.hafssa.ebankbackend.mappers.BankAccountMapperImpl;
 import net.hafssa.ebankbackend.repositories.AccountOperationRepository;
 import net.hafssa.ebankbackend.repositories.BankAccountRepository;
 import net.hafssa.ebankbackend.repositories.CustomerRepository;
@@ -16,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,6 +29,7 @@ public class BankAccountServiceImpl implements BankAccountService {
     private CustomerRepository customerRepository;
     private BankAccountRepository bankAccountRepository;
     private AccountOperationRepository accountOperationRepository;
+    private BankAccountMapperImpl dtoMapper;
 
     @Override
     public Customer saveCustomer(Customer customer) {
@@ -69,8 +74,12 @@ public class BankAccountServiceImpl implements BankAccountService {
 
 
     @Override
-    public List<Customer> listCustomers() {
-        return customerRepository.findAll();
+    public List<CustomerDTO> listCustomers() {
+        List<Customer> customers = customerRepository.findAll();
+        List<CustomerDTO> collect = customers.stream()
+                .map(customer->dtoMapper.fromCustomer(customer))
+                .collect(Collectors.toList());
+        return collect;
     }
 
     @Override

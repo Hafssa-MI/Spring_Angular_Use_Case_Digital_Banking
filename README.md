@@ -30,6 +30,14 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Respect des règles metiers en ajoutant les Exceptions dans le package Exceptions : CustomerNotFoundException(surveillé) ...
 
 
+###  Phase 4: DTO
+- **Commit:** Création des DTOs.
+- [x] Création des Classes DTO (CustomerDTO..) contenant seulement les attributs dont on a besoin
+- [x] Utilisation juste de l'annotation @Data
+- [x] Création des mappers (BankAccountMapperImpl..) et Ajout de l'attribut Mapper dans le Service
+- [x] Utilisation du BeanUtils pour le mapping Objet en Objet DTO
+
+
 ---
 
 
