@@ -36,7 +36,7 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Utilisation juste de l'annotation @Data
 - [x] Création des mappers (BankAccountMapperImpl..) et Ajout de l'attribut Mapper dans le Service
 - [x] Utilisation du BeanUtils pour le mapping Objet en Objet DTO
-
+- [x] Ajout de Swagger.
 
 ---
 
