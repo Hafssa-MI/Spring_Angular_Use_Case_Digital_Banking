@@ -36,4 +36,8 @@ public class CustomerRestController {
     public void deleteCustomer(@PathVariable Long id){
         bankAccountService.deleteCustomer(id);
     }
+    @GetMapping("/customers/search")
+    public List<CustomerDTO> searchCustomers(@RequestParam(name="keyword",defaultValue = "")String keyword){
+        return bankAccountService.searchCustomers("%"+keyword+"%");
+    }
 }

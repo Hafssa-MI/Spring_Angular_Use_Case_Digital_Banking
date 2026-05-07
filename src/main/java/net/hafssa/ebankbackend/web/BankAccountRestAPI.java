@@ -1,9 +1,8 @@
 package net.hafssa.ebankbackend.web;
 
 import lombok.AllArgsConstructor;
-import net.hafssa.ebankbackend.dtos.AccountHistoryDTO;
-import net.hafssa.ebankbackend.dtos.AccountOperationDTO;
-import net.hafssa.ebankbackend.dtos.BankAccountDTO;
+import net.hafssa.ebankbackend.dtos.*;
+import net.hafssa.ebankbackend.exceptions.BalanceNotSufficientException;
 import net.hafssa.ebankbackend.exceptions.BankAccountNotFoundException;
 import net.hafssa.ebankbackend.services.BankAccountService;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +30,20 @@ public class BankAccountRestAPI {
     @GetMapping("/accounts/{accountId}/pageOperations")
     public AccountHistoryDTO getAccountHistory(@PathVariable String accountId, @RequestParam(name = "page",defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "5")int size) throws BankAccountNotFoundException {
         return bankAccountService.getAccountHistory(accountId,page,size);
+    }
+    @PostMapping("/acconts/debit")
+    public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+        this.bankAccountService.debit(debitDTO.getAccountId(),debitDTO.getAmount(),debitDTO.getDescription());
+        return debitDTO;
+    }
+    @PostMapping("/acconts/credit")
+    public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws BankAccountNotFoundException {
+        this.bankAccountService.credit(creditDTO.getAccountId(),creditDTO.getAmount(),creditDTO.getDescription());
+        return creditDTO;
+    }
+    @PostMapping("/acconts/credit")
+    public void transfer(@RequestBody TransferRequestDTO transferRequestDTO) throws BankAccountNotFoundException, BalanceNotSufficientException {
+        this.bankAccountService.transfer(transferRequestDTO.getAccountSource(),transferRequestDTO.getAccountDestination(),transferRequestDTO.getAmount());
     }
 
 }
