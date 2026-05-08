@@ -38,6 +38,14 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Utilisation du BeanUtils pour le mapping Objet en Objet DTO
 - [x] Ajout de Swagger.
 
+
+###  Phase 5: Sécurité
+- **Commit:** Configuration de la sécurité.
+- [x] Création du package Security
+- [x] Création d'une class SecurityConfig avec les annotation @Configuration @EnableWebSecurity et des @Bean méthodes : InMemoryUserDetailManager pour spécifier les utilistauers qui ont droit d'accès, PasswordEncoder qui retourne BCryptPasswordEncoder, SecurityFilterChain pour établir la sécurité Stateless donc on désactive le csrf et l'authorization request de type auth2 d'ou l'obligation de créer un JWTEncoder et JWTDecoder Beans
+- [x] Création de la classe SecurityController pour les méthodes du Mapping avec les annotation @RestController et @RequestMapping
+
+
 ---
 
 
