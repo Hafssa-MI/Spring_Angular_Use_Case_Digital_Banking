@@ -44,7 +44,15 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Création du package Security
 - [x] Création d'une class SecurityConfig avec les annotation @Configuration @EnableWebSecurity et des @Bean méthodes : InMemoryUserDetailManager pour spécifier les utilistauers qui ont droit d'accès, PasswordEncoder qui retourne BCryptPasswordEncoder, SecurityFilterChain pour établir la sécurité Stateless donc on désactive le csrf et l'authorization request de type auth2 d'ou l'obligation de créer un JWTEncoder et JWTDecoder Beans
 - [x] Création de la classe SecurityController pour les méthodes du Mapping avec les annotation @RestController et @RequestMapping
+- [x] Ajout du CrossConfigurationSource dans le SecurityConfig
 
+
+###  Phase 6: ChatbotAI avec Telegram
+- **Commit:** Configuration du chatbot ai avec Telegram.
+- [x] Ajout des dependencies
+- [x] Création du AIAgent et MCP Server et connexion avec MCP Client
+- [x] Ajout du ChatController
+- [x] Ajout du TelegramBot
 
 ---
 

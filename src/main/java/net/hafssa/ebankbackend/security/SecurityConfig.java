@@ -23,6 +23,12 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import org.springframework.ai.chat.memory.ChatMemory;
+import org.springframework.ai.chat.memory.InMemoryChatMemory;
 
 import javax.crypto.spec.SecretKeySpec;
 
@@ -50,7 +56,11 @@ public class SecurityConfig {
         return httpSecurity
                 .sessionManagement(sm->sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(csrf->csrf.disable())
-                .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login/**").permitAll())
+                .cors(Customizer.withDefaults())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login/**",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/swagger-ui.html").permitAll())
                 .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                 //.httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(oa->oa.jwt(Customizer.withDefaults()))
@@ -64,7 +74,8 @@ public class SecurityConfig {
     @Bean
     JwtDecoder jwtDecoder(){
         //String secretKey = "9faa372517ac1d389758d3750fc07acf00f542277f26fec1ce4593e93f64e338";
-        SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(),"RSA");
+        SecretKeySpec secretKeySpec =
+                new SecretKeySpec(secretKey.getBytes(), "HmacSHA512");
         return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS512).build();
     }
     @Bean
@@ -72,5 +83,19 @@ public class SecurityConfig {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         return new ProviderManager(daoAuthenticationProvider);
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource(){
+       CorsConfiguration corsConfiguration=new CorsConfiguration();
+       corsConfiguration.addAllowedOrigin("*");
+       corsConfiguration.addAllowedMethod("*");
+       corsConfiguration.addAllowedHeader("*");
+       UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+       source.registerCorsConfiguration("/**",corsConfiguration);
+       return source;
+    }
+    @Bean
+    public ChatMemory chatMemory() {
+        return new InMemoryChatMemory();
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class BankAccountRestAPI {
     private BankAccountService bankAccountService;
-    @GetMapping("/accounts/{accoundtId}")
+    @GetMapping("/accounts/{accountId}")
     public BankAccountDTO getBankAccount(@PathVariable String accountId) throws BankAccountNotFoundException {
         return bankAccountService.getBankAccount(accountId);
     }
