@@ -1,9 +1,12 @@
 package net.hafssa.ebankbackend.security;
 
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
+import org.springframework.ai.embedding.EmbeddingModel;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -97,5 +100,12 @@ public class SecurityConfig {
     @Bean
     public ChatMemory chatMemory() {
         return new InMemoryChatMemory();
+    }
+    @Bean
+    @Primary
+    public EmbeddingModel embeddingModel(
+            @Qualifier("openAiEmbeddingModel") EmbeddingModel embeddingModel
+    ) {
+        return embeddingModel;
     }
 }

@@ -53,6 +53,7 @@ This project is a robust backend system for a Digital Banking application built 
 - [x] Création du AIAgent et MCP Server et connexion avec MCP Client
 - [x] Ajout du ChatController
 - [x] Ajout du TelegramBot
+- [x] Liaison avec front en angular et ajout du rag et utilisation du ollama pour lembedding et groq pour le chat
 
 ---
 
